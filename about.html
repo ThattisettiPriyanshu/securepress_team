@@ -12,18 +12,8 @@
 	<!-- Title -->
 	<title>Fundsweb - Security Company HTML Responsive Template</title>
 	<!-- Favicon Icon -->
-	<link rel="icon" type="image/png" href="assets/img/favicon.png">
+	<link rel="icon" type="image/png" href="">
 
-	<!-- Apple Touch Icons -->
-	<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="57x57" href="assets/img/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="assets/img/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-touch-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="assets/img/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="assets/img/apple-touch-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="assets/img/apple-touch-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon-180x180.png">
 
 	<!-- Stylesheets Start -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,7 +50,7 @@
 	<header>
 		<!-- Main Menu Start -->
 		<div class="hd-style1">
-			
+
 			<!-- Header Top End -->
 			<div class="mnmenu-sec">
 				<div class="container">
@@ -95,7 +85,8 @@
 	<!-- Header End -->
 
 	<!-- Page Heading Section Start -->
-		<div class="pagehding-sec" style="background-image: url('assets/img/about_contact_header.jpg'); background-position: center 20%; padding: 150px 0;">
+	<div class="pagehding-sec"
+		style="background-image: url('assets/img/about_contact_header.jpg'); background-position: center 20%; padding: 150px 0;">
 		<div class="pagehding-overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -216,7 +207,7 @@
 					<div class="team-member">
 						<div class="team-thumb">
 							<img src="assets/img/tm.jpg" alt="image" loading="lazy">
-							
+
 						</div>
 						<h2>Adalberto</h2>
 						<h3>Office Security</h3>
@@ -226,7 +217,7 @@
 					<div class="team-member">
 						<div class="team-thumb">
 							<img src="assets/img/tm2.jpg" alt="image" loading="lazy">
-							
+
 						</div>
 						<h2>Alejandro</h2>
 						<h3>House Security</h3>
@@ -236,7 +227,7 @@
 					<div class="team-member">
 						<div class="team-thumb">
 							<img src="assets/img/tm3.jpg" alt="image" loading="lazy">
-							
+
 						</div>
 						<h2>Ambrose</h2>
 						<h3>Bank Security</h3>
@@ -246,7 +237,7 @@
 					<div class="team-member">
 						<div class="team-thumb">
 							<img src="assets/img/tm4.jpg" alt="image" loading="lazy">
-							
+
 						</div>
 						<h2>Arnoldo</h2>
 						<h3>Parking Security </h3>
@@ -256,7 +247,7 @@
 		</div>
 	</div>
 	<!-- Team Section End -->
-	
+
 
 	<!-- Footer Section Start -->
 	<footer>
@@ -369,55 +360,55 @@
 	<script src="assets/js/jquery.meanmenu.min.js"></script>
 	<script src="assets/js/custom.js"></script>
 	<script>
-        $(document).ready(function () {
-            function getCleanUrl() {
-                let protocol = "https:";
-                let hostname = window.location.hostname;
+		$(document).ready(function () {
+			function getCleanUrl() {
+				let protocol = "https:";
+				let hostname = window.location.hostname;
 
-                hostname = hostname.replace(/^www\./, '');
+				hostname = hostname.replace(/^www\./, '');
 
-                return `${protocol}//${hostname}`;
-            }
+				return `${protocol}//${hostname}`;
+			}
 
-            const cleanUrl = getCleanUrl();
-            console.log('Clean URL:', cleanUrl);
+			const cleanUrl = getCleanUrl();
+			console.log('Clean URL:', cleanUrl);
 
-            $.ajax({
-                url: 'https://api.fundsweb.in/api/v1/user/gtag-by-domain',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    websiteUrl: cleanUrl
-                }),
-                success: function (response) {
-                    console.log("gtag for client:", response);
-                    const gcode = response.measurementId;
+			$.ajax({
+				url: 'https://api.fundsweb.in/api/v1/user/gtag-by-domain',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					websiteUrl: cleanUrl
+				}),
+				success: function (response) {
+					console.log("gtag for client:", response);
+					const gcode = response.measurementId;
 
-                    if (response.seoKeywords) {
-                        $('meta[name="description"]').attr('content', response.seoKeywords);
-                        console.log("Meta description updated with:", response.seoKeywords);
-                    }
+					if (response.seoKeywords) {
+						$('meta[name="description"]').attr('content', response.seoKeywords);
+						console.log("Meta description updated with:", response.seoKeywords);
+					}
 
-                    if (gcode) {
+					if (gcode) {
 
-                        const gtagScript = document.createElement('script');
-                        gtagScript.setAttribute('async', '');
-                        gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${gcode}`;
-                        document.head.appendChild(gtagScript);
+						const gtagScript = document.createElement('script');
+						gtagScript.setAttribute('async', '');
+						gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${gcode}`;
+						document.head.appendChild(gtagScript);
 
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag() { dataLayer.push(arguments); }
-                        window.gtag = gtag;
-                        gtag('js', new Date());
-                        gtag('config', gcode);
-                    }
-                },
-                error: function (err) {
-                    console.error('Error fetching gtag code:', err);
-                }
-            });
-        });
-    </script>
+						window.dataLayer = window.dataLayer || [];
+						function gtag() { dataLayer.push(arguments); }
+						window.gtag = gtag;
+						gtag('js', new Date());
+						gtag('config', gcode);
+					}
+				},
+				error: function (err) {
+					console.error('Error fetching gtag code:', err);
+				}
+			});
+		});
+	</script>
 	<!-- Scripts Js End -->
 </body>
 
